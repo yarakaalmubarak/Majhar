@@ -1,0 +1,65 @@
+MAJHAR: HOW TO RUN IT
+=====================
+
+You need: a Mac with Python 3, and your Groq API key (free at https://console.groq.com -> API Keys).
+Never show the key in a screenshot, a video or on GitHub.
+
+
+1) START IT
+-----------
+1. Open Terminal (Cmd + Space, type Terminal, press Enter).
+2. Type these two lines, pressing Enter after each:
+
+       cd ~/Downloads/majhar-project
+       bash start.sh
+
+3. It asks for your Groq key. Paste it and press Enter. Nothing shows while you paste: that is normal.
+4. Wait for "WORKS". The website opens in your browser by itself.
+   If it does not open, type 127.0.0.1:8000 in Chrome's address bar.
+5. Keep the Terminal window open the whole time. To stop: Ctrl + C.
+
+If one free AI model runs out of its daily allowance, Majhar switches to the next free model by itself.
+
+
+2) THE LIVE DEMO (tab "Live demo")
+----------------------------------
+1. Top of the desk: "What breaks during the rush" -> choose "Two at once".
+2. Click "1. Rush hour: 60 fans check out at once".
+3. On the phone: type the name Sara, then VIP: press + until it shows 3 -> Add -> Pay.
+   (Everything is in English. The "عربي" button on the phone is optional: it shows the Arabic version.)
+4. Click "2. Other fans grab the last VIP seats".
+5. Watch for 20-60 seconds:
+   - Incidents appear: what the AI found, its plan, "AI reasoning" and "Message the AI wrote".
+   - The dots turn from red to green as customers are fixed.
+   - The System log shows every step.
+6. When a yellow "Approve" box appears, click Approve (one is Sara's 1,350 SAR refund).
+7. Sara's booking on the phone shows "Refunded", with the agent's messages.
+To start over: "Reset demo".
+
+
+3) THE TEST RUN (tab "Testing and results")
+-------------------------------------------
+1. Click "Testing and results" (top left).
+2. Choose "3 crises" and "Normal rules". Click "Run the test".
+3. Wait. With the real AI this takes about 3 to 10 minutes (free AI tiers are slow on purpose).
+   Each crisis appears in plain words as it finishes.
+4. When it finishes, the run appears under "Your test runs".
+5. Optional: run again with "Strict rules".
+6. Take a screenshot: Cmd + Shift + 4, then drag over the results.
+7. Save the page as a PDF: open 127.0.0.1:8000/results, press Cmd + P, Save as PDF.
+
+A yellow box saying "backup" means the AI provider was busy, or the AI did not finish a plan, and the
+standard playbook helped. That is shown honestly and is not counted as the AI's work.
+Under each crisis you can see why any ticket went to a person or to the backup.
+
+
+IF SOMETHING GOES WRONG
+-----------------------
+- "Port 8000 is already in use": an old copy is running. Close the other Terminal window,
+  or run:  lsof -ti:8000 | xargs kill   then  bash start.sh  again.
+- "CERTIFICATE_VERIFY_FAILED": run  open /Applications/Python\ 3*/Install\ Certificates.command  once.
+- "no such file or directory": the folder has another name (for example "majhar-project 2").
+  Use that name in the cd line.
+- The desk says "AI not connected": stop with Ctrl + C and run  bash start.sh  again, paste the key carefully.
+- The Testing page says "AI service was unavailable" with "UnicodeEncodeError" or "HTTP 401": the key was pasted wrongly.
+  Open a NEW Terminal window, run  cd ~/Downloads/majhar-project  and  bash start.sh  and paste ONLY the key (starts with gsk_).
