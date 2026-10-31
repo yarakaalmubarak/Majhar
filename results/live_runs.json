@@ -1,0 +1,106 @@
+[
+ {
+  "when": "2026-10-31 18:29",
+  "agent": "AI (groq: qwen/qwen3.8-27b)",
+  "seed": 84194,
+  "scenarios": 3,
+  "rules": "Normal: refunds up to 300 SAR are automatic",
+  "affected": 49,
+  "whole": 49,
+  "resolved": 49,
+  "no_human": 46,
+  "false_closures": 0,
+  "policy_violations": 0,
+  "escalated": 0,
+  "ai_calls": 32,
+  "ai_tokens": 81622,
+  "ai_problems": 2,
+  "backup_problems": 4,
+  "ai_errors": 2,
+  "seconds": 577.3,
+  "error": null,
+  "rows": [
+   {
+    "scenario": "u001",
+    "faults": [
+     "hold_ttl_bug",
+     "payment_webhook_drop",
+     "duplicate_sale"
+    ],
+    "arrivals": 6,
+    "affected": 12,
+    "ai_calls": 18,
+    "policy_violations": 0,
+    "whole": 12,
+    "tickets": 12,
+    "no_human": 11,
+    "resolved": 12,
+    "false_closures": 0,
+    "escalated": 0,
+    "minutes": 1.0,
+    "ai_tokens": 42123,
+    "ai_problems": 1,
+    "backup_problems": 2,
+    "ai_errors": 1,
+    "ai_error": "RuntimeError: groq HTTP 400: {\"error\":{\"message\":\"Failed to parse tool call arguments as JSON\",\"type\":\"invalid_request_error\",\"code\":\"tool_use_failed\",\"failed_generation\":\"{\\\"name\\\": \\\"write_customer_message\\\", \\\"arguments\\\": {\\\"message_type\\\":?}\\\"}\"}}\n",
+    "handover_reasons": {},
+    "backup_reasons": [
+     "the AI service was unavailable a few minutes ago"
+    ]
+   },
+   {
+    "scenario": "u002",
+    "faults": [
+     "refund_worker_failing"
+    ],
+    "arrivals": 6,
+    "affected": 0,
+    "ai_calls": 0,
+    "policy_violations": 0,
+    "whole": 0,
+    "tickets": 0,
+    "no_human": 0,
+    "resolved": 0,
+    "false_closures": 0,
+    "escalated": 0,
+    "minutes": null,
+    "ai_tokens": 0,
+    "ai_problems": 0,
+    "backup_problems": 0,
+    "ai_errors": 0,
+    "ai_error": null,
+    "handover_reasons": {},
+    "backup_reasons": []
+   },
+   {
+    "scenario": "u003",
+    "faults": [
+     "seat_sync_corruption",
+     "seat_assign_timeout",
+     "ticket_render_bug"
+    ],
+    "arrivals": 6,
+    "affected": 37,
+    "ai_calls": 14,
+    "policy_violations": 0,
+    "whole": 37,
+    "tickets": 37,
+    "no_human": 35,
+    "resolved": 37,
+    "false_closures": 0,
+    "escalated": 0,
+    "minutes": 7,
+    "ai_tokens": 39499,
+    "ai_problems": 1,
+    "backup_problems": 2,
+    "ai_errors": 1,
+    "ai_error": "RuntimeError: groq HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m66t7ze3er1rkf5pyh3neh3m` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7732, Requested 3597. Please try again in 24.9675s. Need more tokens? Upgrade to ",
+    "handover_reasons": {},
+    "backup_reasons": [
+     "the AI service was unavailable a few minutes ago",
+     "the AI service was unavailable: groq HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m66t7ze3er1rkf5pyh3neh3m` service tier `on_demand` "
+    ]
+   }
+  ]
+ }
+]

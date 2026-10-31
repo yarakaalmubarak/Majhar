@@ -1,0 +1,26 @@
+[
+ {
+  "fans": 10,
+  "tickets": 10,
+  "solved": 10,
+  "ai_calls": 3
+ },
+ {
+  "fans": 50,
+  "tickets": 45,
+  "solved": 45,
+  "ai_calls": 3
+ },
+ {
+  "fans": 200,
+  "tickets": 173,
+  "solved": 173,
+  "ai_calls": 3
+ },
+ {
+  "fans": 800,
+  "tickets": 1069,
+  "solved": 1069,
+  "ai_calls": 3
+ }
+]
