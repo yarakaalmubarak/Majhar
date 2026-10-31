@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Majhar Support Desk</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20120%20120%22%20width%3D%22120%22%20height%3D%22120%22%20role%3D%22img%22%20aria-label%3D%22Majhar%22%3E%20%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2235%22%20fill%3D%22none%22%20stroke%3D%22%231c1a36%22%20stroke-width%3D%2210%22/%3E%20%20%3Cline%20x1%3D%2276%22%20y1%3D%2276%22%20x2%3D%22103%22%20y2%3D%22103%22%20stroke%3D%22%231c1a36%22%20stroke-width%3D%2215%22%20stroke-linecap%3D%22round%22/%3E%20%20%3Cg%20fill%3D%22%230e6b4f%22%3E%20%20%20%20%3Ccircle%20cx%3D%2235%22%20cy%3D%2235%22%20r%3D%225.5%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2235%22%20r%3D%225.5%22/%3E%20%20%20%20%3Ccircle%20cx%3D%2235%22%20cy%3D%2250%22%20r%3D%225.5%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%225.5%22/%3E%3Ccircle%20cx%3D%2265%22%20cy%3D%2250%22%20r%3D%225.5%22/%3E%20%20%20%20%3Ccircle%20cx%3D%2235%22%20cy%3D%2265%22%20r%3D%225.5%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2265%22%20r%3D%225.5%22/%3E%3Ccircle%20cx%3D%2265%22%20cy%3D%2265%22%20r%3D%225.5%22/%3E%20%20%3C/g%3E%20%20%3Ccircle%20cx%3D%2265%22%20cy%3D%2235%22%20r%3D%227%22%20fill%3D%22%23e3a21a%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5f4;--card:#fff;--ink:#1a2421;--mute:#5f6a66;--line:#dfe5e2;--night:#1c1a36;
+--green:#0e6b4f;--greenbg:#e3f1eb;--saffron:#9a6800;--saffronbg:#fcefd0;--saffronline:#ecc76e;--red:#c8372d;--redbg:#fbe8e6;--blue:#2f5fb3;--bluebg:#e7eefb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans Arabic",system-ui,sans-serif}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid #7aa8ff;outline-offset:2px}
+header{display:flex;align-items:center;gap:14px;padding:12px 18px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{font-weight:700;font-size:18px;color:var(--green)}.logo span{color:var(--ink);font-weight:500;font-size:15px;margin-left:6px}
+.sp{flex:1}
+.ai{display:flex;align-items:center;gap:8px;font-size:13px;border-radius:999px;padding:5px 12px;background:var(--greenbg);color:var(--green);font-weight:600}
+.ai.off{background:var(--redbg);color:var(--red)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.ai.on.busy .dot{animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.ai .dot{animation:none!important}}
+.clock{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.ghost{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 10px}
+.story{display:flex;gap:10px;align-items:center;padding:10px 18px;background:#eef2f0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.story .hint{color:var(--mute);font-size:13px}
+.act{border:0;border-radius:10px;padding:8px 14px;font-weight:600;background:var(--night);color:#fff}
+.act.n2{background:#4b467f}
+.act:disabled{opacity:.45;cursor:default}
+.kpis{display:flex;gap:28px;padding:14px 18px 6px;flex-wrap:wrap}
+.kpi .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}.kpi .l{font-size:13px;color:var(--mute)}
+.kpi.warn .v{color:var(--saffron)}.kpi.good .v{color:var(--green)}
+main{display:grid;grid-template-columns:minmax(330px,1fr) minmax(360px,1.15fr);gap:14px;padding:10px 18px 24px}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+h2{font-size:15px;margin:0 0 8px;font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.empty{color:var(--mute)}
+.inc{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.inc .t{font-weight:700;font-size:15px}.inc .by{font-size:12px;color:var(--green);font-weight:600}
+.inc .ev{color:var(--mute);font-size:13px;margin-top:2px}
+.meter{display:flex;flex-wrap:wrap;gap:3px;margin:10px 0 4px}
+.meter i{width:9px;height:9px;border-radius:50%;background:var(--red)}
+.meter i.ok{background:var(--green)}.meter i.wait{background:var(--saffronline)}
+.meter-l{font-size:13px;color:var(--mute)}.meter-l b{color:var(--ink)}
+.plan{margin:8px 0 0;padding:0;list-style:none;font-size:13px}
+.plan li{padding:3px 0 3px 14px;position:relative}.plan li:before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--green)}
+details{margin-top:8px;font-size:13px}summary{cursor:pointer;color:var(--green);font-weight:600}
+.quote{background:var(--greenbg);border-radius:10px;padding:8px 10px;margin-top:6px}
+.quote.ar{direction:rtl}
+.think{color:var(--mute);font-style:italic;margin-top:6px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 10px;font-size:13px}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 10px;border-radius:10px;cursor:pointer;border:1px solid transparent}
+.row:hover{background:#f6f8f7}.row.sel{border-color:var(--green);background:#f3faf7}
+.row .c{font-weight:600}.row .m{color:var(--mute);font-size:13px}
+.chip{border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;white-space:nowrap;align-self:start}
+.st-resolved{background:var(--greenbg);color:var(--green)}.st-working,.st-open{background:#eef0ef;color:var(--mute)}
+.st-awaiting_approval{background:var(--saffronbg);color:var(--saffron)}.st-refunding{background:var(--bluebg);color:var(--blue)}
+.st-escalated{background:var(--redbg);color:var(--red)}
+.more{color:var(--mute);font-size:13px;padding:6px 10px}
+.ask{background:var(--saffronbg);border:1px solid var(--saffronline);border-radius:12px;padding:14px;margin:10px 0 12px}
+.ask .q{font-size:16px;font-weight:700}.ask .why{color:#6b5a2c;font-size:13px;margin-top:4px}
+.ask .btns{display:flex;gap:8px;margin-top:12px}
+.approve{border:0;background:var(--green);color:#fff;border-radius:10px;padding:10px 18px;font-weight:700;font-size:15px}
+.decline{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:10px;padding:10px 14px;font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px 14px;margin:10px 0}
+.facts .l{font-size:12px;color:var(--mute)}
+.tl{margin-top:6px}
+.note{display:grid;grid-template-columns:46px 1fr;gap:8px;padding:7px 0;border-top:1px solid #eef1f0}
+.note .tm{color:var(--mute);font-size:12px;font-variant-numeric:tabular-nums;padding-top:2px}
+.who{font-size:12px;font-weight:600}.who.agent{color:var(--green)}.who.human{color:var(--saffron)}.who.customer{color:#7a5a2b}.who.system{color:var(--mute)}
+.sent{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--greenbg);border-radius:6px;padding:0 6px;margin-left:6px}
+.ar{direction:rtl;color:var(--mute);margin-top:2px}
+.note .it{color:var(--mute);font-style:italic}
+.pick{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);font-weight:600}
+.pick select{font:inherit;font-weight:500;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:6px 8px;background:#fff;max-width:100%}
+.bar2{display:flex;gap:10px;align-items:center;padding:8px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:#f7f9f8}
+.loghead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}.loghead h2{margin:0}
+.loghead .filters{margin:0}
+.term{background:#14132a;color:#d9d6f2;border-radius:10px;padding:10px 12px;height:340px;overflow:auto;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+.term div{display:grid;grid-template-columns:40px 74px 1fr;gap:8px;padding:1px 0}
+.term .tm{color:#8783b3}
+.term .lv{font-weight:700}
+.term .tx{word-break:break-word}.term .src{color:#8783b3}
+.lv.ERROR{color:#ff8a80}.lv.WARN{color:#ffcf6e}.lv.AI,.lv.AGENT{color:#7fe0b5}.lv.FIX{color:#7fe0b5}.lv.HUMAN{color:#ffcf6e}
+.lv.CUSTOMER{color:#9cc3ff}.lv.TEST{color:#f2a3d6}.lv.RULES{color:#c6a8ff}.lv.INFO{color:#8783b3}
+.lognote{font-size:12px;color:var(--mute);margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="26" height="26" style="vertical-align:-7px;margin-right:6px" role="img" aria-label="Majhar">
+  <circle cx="50" cy="50" r="35" fill="none" stroke="#1c1a36" stroke-width="10"/>
+  <line x1="76" y1="76" x2="103" y2="103" stroke="#1c1a36" stroke-width="15" stroke-linecap="round"/>
+  <g fill="#0e6b4f">
+    <circle cx="35" cy="35" r="5.5"/><circle cx="50" cy="35" r="5.5"/>
+    <circle cx="35" cy="50" r="5.5"/><circle cx="50" cy="50" r="5.5"/><circle cx="65" cy="50" r="5.5"/>
+    <circle cx="35" cy="65" r="5.5"/><circle cx="50" cy="65" r="5.5"/><circle cx="65" cy="65" r="5.5"/>
+  </g>
+  <circle cx="65" cy="35" r="7" fill="#e3a21a"/>
+</svg>مجهر Majhar<span>Support desk</span></div>
+  <div class="sp"></div>
+  <div class="ai" id="ai"><span class="dot"></span><span id="aiText">AI agent</span></div>
+  <div class="clock" id="clock">--:--</div>
+  <button class="ghost" id="bClock">Pause</button>
+</header>
+<div class="bar2">
+  <label class="pick">What breaks during the rush <select id="fail" aria-label="What breaks"></select></label>
+  <label class="pick">Company rules <select id="rule" aria-label="Company rules"></select></label>
+  <span class="hint" style="color:var(--mute);font-size:13px">The agent is never told what broke. It has to find out.</span>
+</div>
+<div class="story">
+  <button class="act" id="bRush">1. Rush hour: 60 fans check out at once</button>
+  <button class="act n2" id="bGrab">2. Other fans grab the last VIP seats</button>
+  <span class="hint" id="hint">Start with rush hour, then buy tickets on the phone.</span>
+  <span class="sp"></span>
+  <button class="ghost" id="bMin">+1 minute</button>
+  <button class="ghost" id="bReset">Reset demo</button>
+</div>
+<div class="kpis">
+  <div class="kpi"><div class="v" id="kCust">0</div><div class="l">bookings affected</div></div>
+  <div class="kpi good"><div class="v" id="kAuto">0</div><div class="l">tickets solved by the AI alone</div></div>
+  <div class="kpi warn"><div class="v" id="kAppr">0</div><div class="l">decisions waiting for you</div></div>
+  <div class="kpi"><div class="v" id="kTime">-</div><div class="l">average time to resolve</div></div>
+  <div class="kpi"><div class="v" id="kKept">0</div><div class="l">sales kept</div></div>
+  <div class="kpi"><div class="v" id="kRef">0</div><div class="l">refunded</div></div>
+  <div class="kpi"><div class="v" id="kCalls">0</div><div class="l">AI calls used</div></div>
+</div>
+<main>
+  <div>
+    <div class="panel"><h2>Incidents</h2><div id="incs"><div class="empty">No incidents. Payments and bookings agree.</div></div></div>
+    <div class="panel"><h2>Tickets</h2><div class="filters" id="filters"></div><div id="list"><div class="empty">No tickets yet.</div></div></div>
+  </div>
+  <div><div class="panel" id="detail"><h2>Ticket</h2><div class="empty">Select a ticket to see what the agent did.</div></div>
+    <div class="panel"><div class="loghead"><h2>System log</h2><div class="filters" id="logf"><button class="on" data-l="key">Key events</button><button data-l="all">Everything</button></div></div>
+      <div class="term" id="log" role="log" aria-live="off"></div>
+      <div class="lognote">Errors, the agent's decisions and fixes, human approvals and injected failures. Also saved to <code>logs/majhar.log</code>.</div></div></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ST={open:'Agent working',working:'Agent working',awaiting_approval:'Needs your approval',refunding:'Refund on its way',resolved:'Solved',escalated:'With a person'};
+const STEP={record_missing_payment:'Record the missing payments',resend_confirmation:'Re-send booking confirmations',resend_ticket:'Re-send e-tickets',
+  move_to_equal_seat:'Move to an equal seat',refund_if_no_equal_seat:'Refund if no equal seat is left',refund:'Refund',repair_records:'Repair ticket records (needs approval)',wait:'Wait for it to settle'};
+let showAr=false, last=null, sel=null, picked=false, filter='all', detail=null, busy=false, logMode='key', logSeq=-1, menus=false;
+async function api(p,b){ const r=await fetch(p,b?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}:{}); return r.json(); }
+async function demo(a,extra){ busy=true; await api('/api/demo',{action:a,...(extra||{})}); busy=false; refresh(); }
+$('bRush').onclick=()=>demo('rush',{failure:$('fail').value});
+$('rule').onchange=()=>demo('rules',{limit:+$('rule').value});
+document.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{ logMode=b.dataset.l; logSeq=-1;
+  document.querySelectorAll('[data-l]').forEach(x=>x.classList.toggle('on',x===b)); renderLog(last); });
+function menusOnce(d){ if(menus||!d.failures) return; menus=true;
+  $('fail').innerHTML=d.failures.map(f=>`<option value="${f.key}">${esc(f.label)}</option>`).join(''); $('fail').value=d.failure;
+  $('rule').innerHTML=d.rules.map(r=>`<option value="${r.limit}">${esc(r.label)}</option>`).join(''); }
+const KEY=e=>(e.level!=='INFO'&&!(/^(ERROR|WARN)$/.test(e.level)&&/order=\d/.test(e.text)))||e.src==='ops-console'||e.src==='demo';
+function renderLog(d){ if(!d||!d.log) return; const top=d.log.length?d.log[d.log.length-1].seq:0; if(top===logSeq) return; logSeq=top;
+  const rows=d.log.filter(e=>logMode==='all'||KEY(e)).slice().reverse();
+  $('log').innerHTML=rows.length?rows.map(e=>{ const lv=e.src==='ops-console'?'FIX':e.level;
+    return `<div><span class="tm">${e.time}</span><span class="lv ${lv}">${lv}</span><span class="tx"><span class="src">${esc(e.src)}:</span> ${esc(e.text)}</span></div>`; }).join('')
+    :'<div><span></span><span></span><span class="tx">Nothing yet.</span></div>'; } $('bGrab').onclick=()=>demo('grab_vip'); $('bMin').onclick=()=>demo('minute');
+$('bReset').onclick=()=>{ sel=null; picked=false; detail=null; logSeq=-1; demo('reset'); };
+$('bClock').onclick=()=>demo(last&&last.running?'pause':'play');
+function plan(text){ const i=text.indexOf(':'); if(i<0) return esc(text);
+  const head=text.slice(0,i), rest=text.slice(i+1).replace(/\s*\(.*\)\s*$/,'').trim();
+  const steps=rest.split(/\s*(?:→|,)\s*/).map(s=>STEP[s.trim()]||s.trim()).join(', then ');
+  return `<b>${esc(head)}</b>: ${esc(steps)}`; }
+function renderTop(d){
+  menusOnce(d); if(document.activeElement!==$('rule')&&d.policy) $('rule').value=d.policy.auto_refund_limit_sar;
+  $('clock').textContent=d.time; $('bClock').textContent=d.running?'Pause':'Resume';
+  const ai=$('ai'); ai.className='ai '+(d.ai?'on':'off')+(d.ai&&d.kpis.open?' busy':'');
+  $('aiText').textContent=d.ai?`AI agent: ${d.mode}`:'AI not connected (rule-based backup)'; ai.title=d.ai_error||'';
+  const k=d.kpis;
+  $('kCust').textContent=d.total_groups||0; $('kAuto').textContent=k.resolved?`${k.resolved_without_human} of ${k.resolved}`:'0';
+  $('kAppr').textContent=d.counts.awaiting_approval||0; $('kTime').textContent=k.mean_minutes_to_resolve==null?'-':`${k.mean_minutes_to_resolve} min`;
+  $('kKept').textContent=`${(k.revenue_kept_sar||0).toLocaleString()} SAR`; $('kRef').textContent=`${(k.refunded_sar||0).toLocaleString()} SAR`;
+  $('kCalls').textContent=d.ai?d.ai_calls:'-';
+  $('hint').textContent=!d.rushes?'Start with rush hour, then buy tickets on the phone.':
+    (d.counts.awaiting_approval?'The agent needs your decision on a ticket.':'Buy VIP tickets on the phone while payments are failing, then press 2.');
+}
+function renderIncidents(d){
+  $('incs').innerHTML=d.incidents.length?d.incidents.map(i=>{
+    const dots=[]; const n=Math.min(i.tickets,150);
+    for(let j=0;j<n;j++) dots.push(j<i.resolved?'<i class="ok"></i>':(j<i.resolved+i.waiting_human?'<i class="wait"></i>':'<i></i>'));
+    const msg=i.message?`<details><summary>Message the AI wrote to customers</summary><div class="quote">${esc(i.message.english)}</div>${i.message.arabic?`<div class="quote ar">${esc(i.message.arabic)}</div>`:''}</details>`:'';
+    const th=i.thoughts&&i.thoughts.length?`<details><summary>AI reasoning</summary>${i.thoughts.map(x=>`<div class="think">${esc(x.text)}</div>`).join('')}</details>`:'';
+    return `<div class="inc"><div class="by">${i.by==='AI'?'Found and handled by the AI':'Found by the rule-based backup'} at ${i.time}</div>
+      <div class="t">${esc(i.title)}</div><div class="ev">${esc(i.evidence)}</div>
+      <div class="meter" aria-label="${i.resolved} of ${i.tickets} tickets solved">${dots.join('')}</div>
+      <div class="meter-l"><b>${i.resolved} of ${i.tickets}</b> tickets solved${i.waiting_human?`, ${i.waiting_human} waiting for a person`:''}</div>
+      <ul class="plan">${i.plan.map(p=>`<li>${plan(p)}</li>`).join('')}</ul>${msg}${th}</div>`; }).join('')
+    :'<div class="empty">No incidents. Payments and bookings agree.</div>';
+}
+function renderList(d){
+  const c=d.counts, F=[['all','All',d.total_groups],['awaiting_approval','Needs approval',c.awaiting_approval],['working','Agent working',c.working+c.refunding],
+    ['resolved','Solved',c.resolved],['escalated','With a person',c.escalated]];
+  $('filters').innerHTML=F.map(([k,l,n])=>`<button class="${filter===k?'on':''}" data-f="${k}">${l} ${n||0}</button>`).join('');
+  document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ filter=b.dataset.f; render(); });
+  const rows=d.groups.filter(r=>filter==='all'||r.status===filter||(filter==='working'&&['open','working','refunding'].includes(r.status)));
+  if(!picked||!d.groups.find(r=>r.case===sel)){ const a=d.groups.find(r=>r.status==='awaiting_approval')||d.groups[0]; sel=a?a.case:null; }
+  $('list').innerHTML=rows.length?rows.slice(0,15).map(r=>`<div class="row ${r.case===sel?'sel':''}" data-c="${r.case}">
+      <div class="c">${esc(r.customer)} <span class="m">${r.tickets===1?'1 ticket':r.tickets+' tickets'}, ${r.amount.toLocaleString()} SAR</span></div>
+      <span class="chip st-${r.status}">${ST[r.status]}</span>
+      <div class="m">${esc(r.issue)}${r.source==='customer_report'?' (customer wrote in)':''}</div>
+      <div class="m">${r.status==='resolved'?`${r.minutes} min${r.human?', approved by a person':''}`:''}</div></div>`).join('')+
+      (rows.length>15?`<div class="more">and ${rows.length-15} more (use the filters above)</div>`:'')
+    :'<div class="empty">No tickets here.</div>';
+  document.querySelectorAll('[data-c]').forEach(e=>e.onclick=()=>{ sel=e.dataset.c; picked=true; loadDetail(); render(); });
+}
+function renderDetail(){
+  const x=detail; if(!x||x.error){ $('detail').innerHTML='<h2>Ticket</h2><div class="empty">Select a ticket to see what the agent did.</div>'; return; }
+  const p=x.proposal;
+  const ask=p?`<div class="ask"><div class="q">${p.tool==='issue_refund'?`Approve a ${(p.amount_sar||0).toLocaleString()} SAR refund?`:'Approve this change?'}</div>
+     <div>${esc(p.plan)}</div><div class="why">The agent prepared this and checked it with a dry run. It needs you because ${esc(p.why)}.</div>
+     <div class="btns"><button class="approve" data-ok="${p.case}">${p.tool==='issue_refund'?'Approve refund':'Approve'}</button><button class="decline" data-no="${p.case}">Decline</button></div></div>`:'';
+  $('detail').innerHTML=`<h2>${esc(x.customer)}${x.booking?`, booking ${x.booking}`:''} <span class="chip st-${x.status}">${ST[x.status]}</span></h2>${ask}
+    <div class="facts"><div><div class="l">Tickets</div>${x.tickets.map(t=>esc(t.seat)).join(', ')}</div><div><div class="l">Amount</div>${x.amount.toLocaleString()} SAR</div>
+      <div><div class="l">Problem</div>${esc(x.issue)}</div><div><div class="l">Root cause</div>${esc(x.cause||'Investigating')}</div>
+      <div><div class="l">Opened</div>${x.opened}, ${x.source==='customer_report'?'customer wrote in':'found before the customer complained'}</div>
+      <div><div class="l">Language</div>${x.lang==='ar'?'Arabic':'English'}</div></div>
+    <div class="l" style="font-size:12px;color:var(--mute);margin-top:6px;display:flex;align-items:center;gap:8px">What happened, latest first
+      <button class="ghost" id="arT" style="font-size:12px;padding:1px 8px" aria-pressed="${showAr}">${showAr?'Hide Arabic':'عربي'}</button></div>
+    <div class="tl">${x.notes.slice().reverse().map(n=>{ const who=n.who==='agent'?(n.by_ai?'AI agent':'Agent'):n.who==='human'?'Support lead':n.who==='customer'?'Customer':'System';
+      return `<div class="note"><span class="tm">${n.time}</span><div><span class="who ${n.who}">${who}</span>${n.public&&n.who==='agent'?'<span class="sent">sent to customer</span>':''}
+        <div class="${n.text.startsWith('Thinking:')?'it':''}">${esc(n.text)}</div>${showAr&&n.text_ar&&x.lang==='ar'&&n.text_ar!==n.text?`<div class="ar">${esc(n.text_ar)}</div>`:''}</div></div>`; }).join('')}</div>`;
+  const arT=document.getElementById('arT'); if(arT) arT.onclick=()=>{ showAr=!showAr; renderDetail(); };
+  document.querySelectorAll('[data-ok]').forEach(b=>b.onclick=async()=>{ b.disabled=true; b.textContent='Approving'; await api('/api/approve',{case_id:b.dataset.ok}); refresh(); });
+  document.querySelectorAll('[data-no]').forEach(b=>b.onclick=async()=>{ b.disabled=true; await api('/api/deny',{case_id:b.dataset.no}); refresh(); });
+}
+function render(){ if(!last||last.busy) return; renderTop(last); renderIncidents(last); renderList(last); renderDetail(); renderLog(last); }
+async function loadDetail(){ if(!sel){ detail=null; return; } try{ const d=await api('/api/case?id='+encodeURIComponent(sel)); if(!d.busy) detail=d; }catch(e){} }
+async function refresh(){ try{ const d=await api('/api/desk'); if(!d.busy) last=d; await loadDetail(); render(); }catch(e){} }
+refresh(); setInterval(refresh,1000);
+</script>
+</body>
+</html>
